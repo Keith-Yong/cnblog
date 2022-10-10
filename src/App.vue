@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-<!-- 渲染Header组件 -->
-  <Header />
+<!-- 渲染Header组件? 这里的/为啥标红了 -->
+  <Header></Header>
 
   </div>
 </template>

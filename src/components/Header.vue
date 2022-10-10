@@ -2,7 +2,7 @@
       <!-- 定义header标签 -->
   <div class="header">
    <!-- 头部的列表标签用ul>li -->
-   <img src="" alt="">
+   <img src="../assets/cnodejs_light.svg" alt="">
    <ul>
     <!--  把header组件引入到app组件中 -->
     <li><a href="#">首页</a></li>
@@ -17,7 +17,7 @@
 
 <script>
     //  导出Header组件
-    // export default {
-    //     name:"Header"
-    // }
+    export default {
+        name:"Header"
+    }
 </script>
