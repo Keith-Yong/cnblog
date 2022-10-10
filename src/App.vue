@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-<!-- 渲染Header组件? 这里的/为啥标红了 -->
+<!-- 渲染Header组件 -->
   <Header></Header>
 
   </div>
@@ -23,6 +23,7 @@ export default {
 }
 </script>
 
-<style>
+
+<style scoped>
 
 </style>
