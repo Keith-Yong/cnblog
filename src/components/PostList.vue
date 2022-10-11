@@ -13,8 +13,9 @@
       <!-- 一篇篇博客形成了主题列表，所以用ul>li结构 -->
 
       <ul>
+        <!--  for循环遍历数组 -->
         <li v-for="post in posts" :key="post.id">
-          
+          <!-- 在页面展示图片列表 -->
 
           <img :src="post.author.avatar_url" alt="" />
         </li>
@@ -30,6 +31,7 @@ export default {
   data() {
     return {
       isLoading: false,
+    //    用一个空数组存储axios返回的后端数据
       posts: [],
     };
   },
@@ -52,6 +54,7 @@ export default {
         .then((res) => {
           this.isLoading = false; //加载成功，去除动画
           console.log(res.data);
+        //   将请求成功拿到的数据 存入数组posts中
           this.posts = res.data.data;
         })
 
