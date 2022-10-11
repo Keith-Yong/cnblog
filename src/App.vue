@@ -3,8 +3,10 @@
 <!-- 渲染Header组件 -->
   <Header></Header>
   <!-- 渲染PostList组件 -->
+  <div class="main">
+    <PostList></PostList>
+  </div>
   
-  <PostList></PostList>
   </div>
 </template>
 
@@ -29,5 +31,8 @@ export default {
 
 
 <style scoped>
-
+ .main{
+  width: 80%;
+  margin: 0 auto;
+ }
 </style>

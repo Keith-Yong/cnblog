@@ -35,6 +35,13 @@ span不用样式控制就会在一行显示，而div需要用到float、width的
           <!-- 过滤器语法：写在大括号内 -->
                
           <span>{{post.last_reply_at | formatDate}}</span>
+          <!-- 帖子的分类 动态绑定class -->
+          <!-- 会根据传进来的变量属性值自动选择对应的 class样式 -->
+          <span :class="[{put_good:(post.good == true), put_top:(post.top == true),'topiclist-tab':(post.good != true) && (post.top !=true)}]">
+            </span>
+            <!-- 过滤器第一个值是传入的参数，|是管道，第二个参数是过滤器名字 -->
+            <span>{{post | tabFormatter}}</span>
+
         </li>
       </ul>
     </div>
