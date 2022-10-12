@@ -3,6 +3,7 @@
 <!-- 渲染Header组件 -->
   <Header></Header>
   <!-- 渲染PostList组件 -->
+  <!-- 用一个div包裹所有的内容 -->
   <div class="main">
     <PostList></PostList>
   </div>

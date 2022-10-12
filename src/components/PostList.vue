@@ -8,40 +8,50 @@
       <img src="../assets/loading.gif" alt="" />
     </div>
     <!-- 一旦数据返回，就加载下面的div, -->
-    GGGGG
-    <div>
+    
+    <div class="posts" v-else>
       <!-- 一篇篇博客形成了主题列表，所以用ul>li结构 -->
 
-      <ul class="pics">
+      <ul >
+        <li>
+            <!-- 顶部列表 -->
+            <div class="toobar">
+                <span>全部</span>
+                <span>精华</span>
+                <span>分享</span>
+                <span>问答</span>
+                <span>招聘</span>
+            </div>
+        </li>
         <!--  for循环遍历数组 -->
         <li v-for="post in posts" :key="post.id">
           <!-- 在页面展示图片列表 :是动态绑定什么意思？-->
-
+          <!-- 头像 -->
           <img :src="post.author.avatar_url" alt="" />
           <!-- 为什么要用span标签解释：div跟span最大的区别就是span在一行显示而div换行显示，其实掌握好CSS样式span跟div没什么大的区别，一般都用div布局页面，而span一般包在div里面用的比较多。
 span不用样式控制就会在一行显示，而div需要用到float、width的Style样式控制，他才在一行显示。 -->
             <!-- 需要做分块处理所以用span    -->
-          <span>
+          <span class="allcount">
             <!--  回复量用span标签 -->
             <span class="reply_count">{{post.reply_count}}</span>
             <!-- 帖子访问量 -->
             /{{post.visit_count}}
           </span>
-          <span>
-            <!-- 帖子标题 -->
-            {{post.title}}
-          </span>
-          <!-- 最终回复时间 使用管道过滤器-->
-          <!-- 过滤器语法：写在大括号内 -->
-               
-          <span>{{post.last_reply_at | formatDate}}</span>
           <!-- 帖子的分类 动态绑定class -->
           <!-- 会根据传进来的变量属性值自动选择对应的 class样式 -->
-          <span :class="[{put_good:(post.good == true), put_top:(post.top == true),'topiclist-tab':(post.good != true) && (post.top !=true)}]">
+          <span :class="[{put_good:(post.good == true), put_top:(post.top == true),
+            'topiclist-tab':(post.good != true) && (post.top !=true)}]">
             </span>
             <!-- 过滤器第一个值是传入的参数，|是管道，第二个参数是过滤器名字 -->
             <span>{{post | tabFormatter}}</span>
-
+            <!-- 帖子标题 -->
+          <span>
+            {{post.title}}
+          </span>
+          <!-- 最终回复时间 使用管道过滤器-->
+          <!-- 过滤器语法：写在大括号内 -->     
+          <span>{{post.last_reply_at | formatDate}}</span>
+          
         </li>
       </ul>
     </div>
@@ -93,131 +103,123 @@ export default {
   },
 };
 </script>
-
 <style scoped>
-    /* 主页背景色设为白色 */
-    .PostList {
-        background-color: #e1e1e1;
+    .PostList{
+      background-color: #e1e1e1;
     }
-    /*  头像太大 改小 */
-    .pics img {
-        width:30px;
-        height: 30px;
+    .posts {
+      margin-top: 10px;
     }
+  
+    .PostList img {
+      height: 30px;
+      width: 30px;
+      vertical-align: middle;
+    }
+  
     ul {
-        /* 去除图片列表样式 */
-        list-style: none;
-        width:100%;
-        max-width: 1344px;
-        margin: 0 auto;
-
+      list-style: none;
+      width: 100%;
+      max-width: 1344px;
+      margin: 0 auto;
     }
-
-
-/*  首页的样式 */
-ul {
-    list-style: none;
-    width: 100%;
-    max-width: 1344px;
-    margin: 0 auto;
-  }
-
-  ul li:not(:first-child) {
-    padding: 9px;
-    font-size: 15px;
-    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, sans-serif !important;
-    font-weight: 400;
-    background-color: white;
-    color: #333;
-    border-top: 1px solid #f0f0f0;
-  }
-
-  li:not(:first-child):hover {
-    background: #f5f5f5;;
-  }
-
-  li:last-child:hover {
-    background: white;
-  }
-
-  li span {
-    line-height: 30px;
-  }
-
-  .allcount {
-    width: 70px;
-    display: inline-block;
-    text-align: center;
-    font-size: 12px;
-  }
-
-  .reply_count {
-    color: #9e78c0;
-    font-size: 14px;
-  }
-
-  .put_good, .put_top {
-    background: #80bd01;
-    padding: 2px 4px;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    color: #fff;
-    font-size: 12px;
-    margin-right: 10px;
-  }
-
-  .topiclist-tab {
-    background-color: #e5e5e5;
-    color: #999;
-    padding: 2px 4px;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    font-size: 12px;
-    margin-right: 10px;
-  }
-
-  .last_reply {
-    text-align: right;
-    min-width: 50px;
-    display: inline-block;
-    white-space: nowrap;
-    float: right;
-    color: #778087;
-    font-size: 12px;
-  }
-
-  .toobar {
-    height: 40px;
-    background-color: #f5f5f5;
-  }
-
-  .toobar span {
-    font-size: 14px;
-    color: #80bd01;
-    line-height: 40px;
-    margin: 0 10px;
-    cursor: pointer;
-  }
-
-  .toobar span:hover {
-    color: #9e78c0;
-  }
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  .loading {
-    text-align: center;
-    padding-top: 300px;
-  }
-</style>
+  
+    ul li:not(:first-child) {
+      padding: 9px;
+      font-size: 15px;
+      font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, sans-serif !important;
+      font-weight: 400;
+      background-color: white;
+      color: #333;
+      border-top: 1px solid #f0f0f0;
+    }
+  
+    li:not(:first-child):hover {
+      background: #f5f5f5;;
+    }
+  
+    li:last-child:hover {
+      background: white;
+    }
+  
+    li span {
+      line-height: 30px;
+    }
+  
+    .allcount {
+      width: 70px;
+      display: inline-block;
+      text-align: center;
+      font-size: 12px;
+    }
+  
+    .reply_count {
+      color: #9e78c0;
+      font-size: 14px;
+    }
+  
+    .put_good, .put_top {
+      background: #80bd01;
+      padding: 2px 4px;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -o-border-radius: 3px;
+      color: #fff;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+  
+    .topiclist-tab {
+      background-color: #e5e5e5;
+      color: #999;
+      padding: 2px 4px;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -o-border-radius: 3px;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+  
+    .last_reply {
+      text-align: right;
+      min-width: 50px;
+      display: inline-block;
+      white-space: nowrap;
+      float: right;
+      color: #778087;
+      font-size: 12px;
+    }
+  
+    .toobar {
+      height: 40px;
+      background-color: #f5f5f5;
+    }
+  
+    .toobar span {
+      font-size: 14px;
+      color: #80bd01;
+      line-height: 40px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+  
+    .toobar span:hover {
+      color: #9e78c0;
+    }
+  
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  
+    a:hover {
+      text-decoration: underline;
+    }
+  
+    .loading {
+      text-align: center;
+      padding-top: 300px;
+    }
+  </style>
