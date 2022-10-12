@@ -246,7 +246,7 @@ export default {
     /* 修改题目的位置 */
     .title {
         position: absolute;
-        left: 160px;
+        left: 145px;
     }
 
 

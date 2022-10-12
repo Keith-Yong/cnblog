@@ -17,8 +17,21 @@
                     <li>• {{post.visit_count}}次浏览</li>
                     <li>•来自{{post | tabFormatter}}</li>
                 </ul>
-                <div class=""></div>
+                <!-- 获取本组件中正文的数据 -->
+                <!-- 后端拿到的数据是使用了markdown的语法，所以需要把markdown语法引进来 -->
+                <div v-html="post.content" class="topic_content"></div>
 
+        </div>
+        <!-- article页面中回复的内容 -->
+        <div>
+            <div class="topbar">回复</div>
+            
+            <!--  -->
+            <div v-for="(reply,index) in post.replies" :key="index"   >
+           
+                <!-- bug解决方法：不要用对象或是数组作为key，用string或value作为key -->
+                <img :src="reply.author.avatar_url" alt="">
+            </div>
         </div>
     </div>
 </template>
@@ -29,7 +42,7 @@
         data(){
             return {
                 isLoading:false, //是否正在加载
-                post:[]  //当前文章页的所有内容，所有属性
+                post:{} // 空对象：当前文章页的所有内容，所有属性 为什么这里是用空的对象，而不是数组
             }
         },
         beforeMount(){
@@ -59,7 +72,86 @@
 
 </script>
 
-<style scoped>
+<!-- 引入css必须把Scoped去掉 -->
 
-
-</style>
+<style >
+    /* @import url('../assets/markdown-github.css'); */
+    .topbar {
+      padding: 10px;
+      background-color: #f6f6f6;
+      height: 16px;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+  
+    .article:not(:first-child) {
+      margin-right: 340px;
+      margin-top: 15px;
+    }
+  
+    #reply, .topic_header {
+      background-color: #fff;
+    }
+  
+    #reply {
+      margin-top: 15px;
+    }
+  
+    #reply img {
+      width: 30px;
+      height: 30px;
+      position: relative;
+      bottom: -9px;
+    }
+  
+    #reply a, #reply span {
+      font-size: 13px;
+      color: #666;
+      text-decoration: none;
+    }
+    .replySec{
+      border-bottom:1px solid #e5e5e5;
+      padding:0 10px;
+    }
+  
+    .loading {
+      text-align: center;
+      padding-top: 300px;
+    }
+  
+    .replyUp a:nth-of-type(2) {
+      margin-left: 0px;
+      display: inline-block;
+    }
+  
+    .topic_header {
+      padding: 10px;
+    }
+  
+    .topic_title {
+      font-size: 20px;
+      font-weight: bold;
+      padding-top: 8px;
+    }
+  
+    .topic_header ul {
+      list-style: none;
+      padding: 0px 0px;
+      margin: 6px 0px;
+    }
+  
+    .topic_header li {
+      display: inline-block;
+      font-size: 12px;
+      color: #838383;
+    }
+  
+    .topic_content {
+      border-top: 1px solid #e5e5e5;
+      padding: 0 10px;
+    }
+  
+    .markdown-text img {
+      width: 92% !important;
+    }
+  </style>
