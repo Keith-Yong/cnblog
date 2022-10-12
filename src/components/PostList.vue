@@ -24,7 +24,7 @@
             </div>
         </li>
         <!--  for循环遍历数组 -->
-        <li v-for="post in posts" :key="post.id">
+        <li v-for="post in posts" :key="post.id" class="first">
           <!-- 在页面展示图片列表 :是动态绑定什么意思？-->
           <!-- 头像 -->
           <img :src="post.author.avatar_url" alt="" />
@@ -40,17 +40,18 @@ span不用样式控制就会在一行显示，而div需要用到float、width的
           <!-- 帖子的分类 动态绑定class -->
           <!-- 会根据传进来的变量属性值自动选择对应的 class样式 -->
           <span :class="[{put_good:(post.good == true), put_top:(post.top == true),
-            'topiclist-tab':(post.good != true) && (post.top !=true)}]">
-            </span>
+            'topiclist-tab':(post.good != true) && (post.top !=true)}]"  id="fenlei" >
+            
             <!-- 过滤器第一个值是传入的参数，|是管道，第二个参数是过滤器名字 -->
-            <span>{{post | tabFormatter}}</span>
+            <span >{{post | tabFormatter}}</span>
+        </span>
             <!-- 帖子标题 -->
-          <span>
+          <span class="title">
             {{post.title}}
           </span>
           <!-- 最终回复时间 使用管道过滤器-->
           <!-- 过滤器语法：写在大括号内 -->     
-          <span>{{post.last_reply_at | formatDate}}</span>
+          <span class="last-time">{{post.last_reply_at | formatDate}}</span>
           
         </li>
       </ul>
@@ -147,13 +148,14 @@ export default {
     }
   
     .allcount {
-      width: 70px;
+      max-width: 80px;
       display: inline-block;
       text-align: center;
       font-size: 12px;
     }
   
     .reply_count {
+      
       color: #9e78c0;
       font-size: 14px;
     }
@@ -222,4 +224,29 @@ export default {
       text-align: center;
       padding-top: 300px;
     }
+
+    .first {
+        position: relative;
+    }
+/* 修改时间的位置 */
+    .last-time {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+     /* 修改分类标签的位置 */
+    #fenlei {
+        position: absolute;
+        left:100px
+    }
+
+    /* 修改题目的位置 */
+    .title {
+        position: absolute;
+        left: 150px;
+    }
+
+
+    
   </style>
