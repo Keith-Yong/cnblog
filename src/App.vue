@@ -6,7 +6,7 @@
   <!-- 用一个div包裹所有的内容 -->
   <div class="main">
     <!-- <PostList></PostList> -->
-    <!-- main对应的index文件中的main参数 -->
+    <!--路由 默认访问postlist组件，点击标题后路由后指向Article组件 -->
     <router-view name="main"></router-view>
     
   </div>

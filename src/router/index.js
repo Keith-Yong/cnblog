@@ -21,7 +21,9 @@ export default new Router({
         // 需要在路由中定义一个路径path的参数
         path:'/topic/:id',
         // 需要在路由中定义一个参数用于路由指向的组件
-        component:Article
+        components:{
+            main:Article
+          }
             
         }
         
