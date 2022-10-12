@@ -5,7 +5,7 @@
     <!--  这里的div是在加载慢的时候套一个加载动画 -->
     <!-- v-if的作用：在isLoading状态的时候加载这个标签，在data函数中定义isLoading的值 -->
     <div class="loading" v-if="isLoading">
-      <img src="../assets/loading.gif" alt="" />
+      <img src="../assets/loading.gif" alt="" >
     </div>
     <!-- 一旦数据返回，就加载下面的div, -->
     
@@ -238,13 +238,13 @@ export default {
      /* 修改分类标签的位置 */
     #fenlei {
         position: absolute;
-        left:100px
+        left:110px
     }
 
     /* 修改题目的位置 */
     .title {
         position: absolute;
-        left: 150px;
+        left: 160px;
     }
 
 
