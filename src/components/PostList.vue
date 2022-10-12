@@ -45,10 +45,12 @@ span不用样式控制就会在一行显示，而div需要用到float、width的
             <!-- 过滤器第一个值是传入的参数，|是管道，第二个参数是过滤器名字 -->
             <span >{{post | tabFormatter}}</span>
         </span>
-            <!-- 帖子标题 -->
-          <span class="title">
-            {{post.title}}
-          </span>
+            <!-- 帖子标题  超链接使用路由包裹起来 -->
+            <!-- 这里的name和id是传过Index.js中的路由数组 -->
+            <router-link :to="{name:'post_content',params:{id:post.id}}">
+                <span class="title"> {{post.title}}</span>
+            </router-link>
+          
           <!-- 最终回复时间 使用管道过滤器-->
           <!-- 过滤器语法：写在大括号内 -->     
           <span class="last-time">{{post.last_reply_at | formatDate}}</span>
