@@ -1,14 +1,15 @@
 <template>
     <!-- 复制PostList组件中对应的标签即可 -->
-    <div class="PostList">
-        <div class="loading" v-if="isLoading">
+    <div class="article">
+        <div class="loading" v-if="isLoading"> 
             <img src="../assets/loading.gif" alt="" >
             <!-- 搭建页面结构 -->
         </div>
-        <!-- v-else必须和v-if同时使用 -->
-        <div class="c" v-else>
+        <!-- v-else必须和v-if同时使用 c什么意思？ -->
+        <div c v-else>
             <!-- 把div定义成两部分，header +title-->
-            <div class="topic_header"></div>
+            <div class="topic_header">
+            <div class="topic_title">{{post.title}}</div>
             <!-- 一列一列都可以用ul来表示 -->
                 <ul>
                     <!-- 日期 ，用户名，访问量，来源-->
@@ -23,15 +24,49 @@
 
         </div>
         <!-- article页面中回复的内容 -->
-        <div>
+        <div id="reply">
             <div class="topbar">回复</div>
             
             <!--  -->
-            <div v-for="(reply,index) in post.replies" :key="index"   >
-           
+            <div v-for="(reply,index) in post.replies" :key="index"  class="replySec" >
+                <!--  -->
+               <div class="replyUp">
+                <router-link :to="{
+                    //  传递参数
+                    name:'user_info',
+                    params:{
+                    name:reply.author.loginname
+                    }
+                }">
+                    <img :src="reply.author.avatar_url" alt="">
+                </router-link>
+              
                 <!-- bug解决方法：不要用对象或是数组作为key，用string或value作为key -->
-                <img :src="reply.author.avatar_url" alt="">
+                
+                <!-- 用户名字 也加一个路由-->
+                 <router-link :to="{
+                    name:'user_info',
+                    params:{
+                    name:reply.author.loginname
+                    }
+                    }">
+                    <span>{{reply.author.loginname}}</span>
+                </router-link> 
+                
+                <!-- 楼层index+1循环 -->
+                <span>
+                    {{index + 1}}楼
+                </span>
+                <span v-if="reply.ups.length>0" >
+          ☝ {{reply.ups.length}}
+            </span>
+            <span v-else>
+            </span>
+
+             </div> 
+             <p v-html="reply.content"></p>
             </div>
+        </div>
         </div>
     </div>
 </template>
@@ -73,9 +108,9 @@
 </script>
 
 <!-- 引入css必须把Scoped去掉 -->
-
 <style >
-    /* @import url('../assets/markdown-github.css'); */
+    
+    @import url('../assets/markdown-github.css');
     .topbar {
       padding: 10px;
       background-color: #f6f6f6;
@@ -155,3 +190,4 @@
       width: 92% !important;
     }
   </style>
+  
