@@ -15,6 +15,44 @@
                 注册时间：{{userinfo.creat_at | formatDate}}
             </p>
         </section>
+        <!-- 回复内容 -->
+        <div class="replies">
+            <p>回复的主题</p>
+            <ul>
+                <!-- 回复的主题内容，可以点击的，用路由进行链接对应的组件 -->
+                <li v-for="item in userinfo.recent_replies" :key="item">
+                    <router-link :to="{
+                      name:'post_content',
+                      params:{
+                        id:item.id
+                      }
+                      
+                    }">
+                        {{item.title}}
+                    </router-link>
+                </li>
+            </ul>
+
+        </div>
+        <!-- 创建的主题 -->
+        <div class="topics">
+            <p>创建的主题</p>
+            <ul>
+                <!-- 这里的路由和最近的主题一样直接复制即可 -->
+                <li v-for="item in userinfo.recent_topics" :key="item">
+                    <router-link :to="{
+                      name:'post_content',
+                      params:{
+                        id:item.id
+                      }
+                      
+                    }">
+                        {{item.title}}
+                    </router-link>
+
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 </template>
