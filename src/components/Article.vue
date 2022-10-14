@@ -85,6 +85,7 @@ export default {
     this.isLoading = true;
     this.getAriticleData();
   },
+  
   methods: {
     // 定义方法使用axios获取Article的数据
     getAriticleData() {
@@ -101,7 +102,16 @@ export default {
         });
     },
   },
+
+  watch:{
+
+          $route(){
+            this.getAriticleData()
+          }
+      }
 };
+
+    
 </script>
 
 <!-- 引入css必须把Scoped去掉 -->
