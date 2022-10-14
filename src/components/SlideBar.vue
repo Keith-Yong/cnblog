@@ -2,13 +2,7 @@
 <!--  side侧边栏html结构 -->
  <div class="autherinfo">
     <div class="authersummary">
-    <div>作者最近主题</div>
-</div>
-    <div class="recent_topics">
-        <div class="topbar">作者最近回复</div>
-        <!-- 头像用路由 和aritcle中的一样，直接复制修改参数即可，参数不同,因为接口不同 -->
-       
-            <router-link
+        <router-link
               :to="{
                 //  点击头像会传参数name，即入参name，
                 name: 'user_info',
@@ -19,6 +13,19 @@
             >
               <img :src="userinfo.avatar_url" alt="" />
             </router-link>
+    <div>作者最近主题</div>
+    <ul>
+        <li v-for="list in userinfo.recent_topics" :key="list">
+            <!-- 只需要显示5条，这里会显示多条 -->
+            {{list.title}}
+        </li>
+    </ul>
+</div>
+    <div class="recent_topics">
+        <div class="topbar">作者最近回复</div>
+        <!-- 头像用路由 和aritcle中的一样，直接复制修改参数即可，参数不同,因为接口不同 -->
+       
+            
         
 
  </div>
