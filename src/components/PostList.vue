@@ -47,7 +47,10 @@ span不用样式控制就会在一行显示，而div需要用到float、width的
         </span>
             <!-- 帖子标题  超链接使用路由包裹起来 -->
             <!-- 这里的name和id是传过Index.js中的路由数组 -->
-            <router-link :to="{name:'post_content',params:{id:post.id}}">
+            <router-link :to="{name:'post_content',params:{
+                id:post.id,
+                name:post.author.loginname
+                }}">
                 <span class="title"> {{post.title}}</span>
             </router-link>
           
