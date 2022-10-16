@@ -2,8 +2,10 @@
 <template>
     <!-- 定义页码html结构 -->
 <div class="pagination">
-    <button>首页</button>
-    <button>«</button>
+    <!-- <button>首页</button> -->
+    <!-- @click="changeBtn传入原生的函数本身-->
+    <button @click="changeBtn">«</button>
+    <button v-if="jduge" class="pagebtn">...</button>
     
     <!-- 定义页面数字的按钮 -->
     <!-- 动态绑定点击按钮的样式-->
@@ -15,25 +17,50 @@
     @click="changeBtn(btn)">
         {{btn}} 
     </button>
-    <button>»</button>
+    <button @click="changeBtn">»</button>
 </div>
 </template>
 <script>
+    // 引入jquery 
+    import $ from 'jquery'
+    
     export  default {
         name:"Pageination",
         data(){
             return {
                 // 定义数组 分页展示的页码数字，
-                pagebtns:[1,2,3,4,5,'.....'],
+                pagebtns:[1,2,3,4,5,'...'],
                 //  定义一个变量，描述当前点击的页码按钮
-                currentPage:1
+                currentPage:1,
+                jduge:false
             }
         },
         methods: {
             // 定义函数currentPage，使点击后变量==点击的标签页码
             changeBtn(page){
+                // 点击«和»按钮发生的情况
+                if(typeof page != 'number') {
+                    switch(page.target.innerText){
+                        case '«':
+                          return  $('button.currentPage').prev().click();
+                            // break;
+                    case '»':
+                    return  $('button.currentPage').next().click();
+                        
+                    default:
+                        break;
+
+                    }
+                    return;
+                }
                 // 这里是赋值不是等于号
                 this.currentPage = page
+                if (page>4){
+                    this.jduge = true
+                }else {
+                    this.jduge =false
+                }
+
                 // 点击页码按钮，使展示的页码数字发生变化,页面只展示5页
 
                 // 页码为数组的最后一个，则移除第一个元素，添加最后一个元素

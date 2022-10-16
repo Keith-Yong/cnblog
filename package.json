@@ -11,6 +11,7 @@
     "axios": "^1.1.2",
     "core-js": "^3.6.5",
     "github-markdown-css": "^5.1.0",
+    "jquery": "^3.6.1",
     "vue": "^2.6.11",
     "vue-router": "3"
   },
@@ -41,5 +42,9 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "main": "index.js",
+  "repository": "git@github.com:Keith-Yong/cnblog.git",
+  "author": "keith-Yong <2957831617@qq.com>",
+  "license": "MIT"
 }
