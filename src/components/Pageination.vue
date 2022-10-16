@@ -34,6 +34,22 @@
             changeBtn(page){
                 // 这里是赋值不是等于号
                 this.currentPage = page
+                // 点击页码按钮，使展示的页码数字发生变化,页面只展示5页
+
+                // 页码为数组的最后一个，则移除第一个元素，添加最后一个元素
+                if(page == this.pagebtns[4]){
+                    this.pagebtns.shift(); //移除第一个元素
+                    this.pagebtns.splice(4,0,this.pagebtns[3]+1); //添加最后一个元素
+                    // 页码为数组的第一个且不为1，则移除最后一个元素，添加第一个元素
+                }else if(page == this.pagebtns[0]&&page !=1){
+                    this.pagebtns.unshift(this.pagebtns[0]-1);  //先在第一个位置加一个
+                    this.pagebtns.splice(5,1);//移除最后一个数字
+                }
+
+
+                
+
+
             }
         }
     }
