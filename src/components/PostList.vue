@@ -60,7 +60,12 @@ span不用样式控制就会在一行显示，而div需要用到float、width的
         </li>
           <li>
             <!-- 分页组件在主页组件中的位置 -->
-          <Pageination />
+            <!-- 点击哪个按钮就跳转对应的列表数据，这里需要子组件传递数据给父组件 -->
+            <!-- 定义子组件 -->
+            <!-- 2、在父组件引入子组件，成立父子关系 -->
+            <!-- 3、给父组件对应标签绑定点击事件，这里是 renderlist-->
+            <!--  handlelist监听到子组件数据变化后会调用renderlist函数-->
+          <Pageination  @handlelist="renderlist"/>
           </li>
       </ul>
     </div>
@@ -79,6 +84,7 @@ export default {
       isLoading: false,
     //    用一个空数组存储axios返回的后端数据
       posts: [],
+      postpage:1 //需要传递给接口的入参:页码，默认是1
     };
   },
   components:{
@@ -96,8 +102,9 @@ export default {
       
       this.$http
         .get("https://cnodejs.org/api/v1/topics", {
-          page: 1,
-          limit: 20,
+          // 修改page参数固定值为1为变量
+          params:{page: this.postpage,
+          limit: 20,}
         })
         // then后面加成功的 具体行为
         .then((res) => {
@@ -113,6 +120,10 @@ export default {
           console.log(err);
         });
     },
+    renderlist(page){
+      this.postpage = page // 修改传入的入参：页码
+      this.getData(); // 调用接口函数
+    }
     
   },
 };

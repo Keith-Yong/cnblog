@@ -72,6 +72,9 @@
                     this.pagebtns.unshift(this.pagebtns[0]-1);  //先在第一个位置加一个
                     this.pagebtns.splice(5,1);//移除最后一个数字
                 }
+                //  1、定义一个事件名，这个事件名将负责向父组件传递子组件状态
+                // this.currentPage发生变化后this.currentPage的值会通过handlelist传给父组件
+                    this.$emit('handlelist',this.currentPage)
 
 
                 
