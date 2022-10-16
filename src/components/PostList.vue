@@ -57,8 +57,11 @@ span不用样式控制就会在一行显示，而div需要用到float、width的
           <!-- 最终回复时间 使用管道过滤器-->
           <!-- 过滤器语法：写在大括号内 -->     
           <span class="last-time">{{post.last_reply_at | formatDate}}</span>
-          
         </li>
+          <li>
+            <!-- 分页组件在主页组件中的位置 -->
+          <Pageination />
+          </li>
       </ul>
     </div>
   </div>
@@ -67,6 +70,8 @@ span不用样式控制就会在一行显示，而div需要用到float、width的
 
 <script>
 // export default 向外暴露的成员，可以使用任意变量来接收 这里为什么
+//  引入分页组件
+import Pageination from './Pageination.vue'
 
 export default {
   data() {
@@ -75,6 +80,9 @@ export default {
     //    用一个空数组存储axios返回的后端数据
       posts: [],
     };
+  },
+  components:{
+    Pageination,
   },
   created() {
     
