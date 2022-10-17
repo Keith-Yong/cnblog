@@ -7,7 +7,7 @@ import SlideBar from '../components/SlideBar'
 
 Vue.use(Router)
 
-console.log(SlideBar)
+// console.log(SlideBar)
 export default new Router({
     routes: [
         // 需要在路由中定义一个名字name的参数
